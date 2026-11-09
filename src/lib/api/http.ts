@@ -52,6 +52,7 @@ export const httpApi: TradingApi = {
   getHealth: () => request<T.Health>("/health"),
   getMarkets: () => request<T.MarketStatus[]>("/markets"),
   getInstruments: () => request<T.Instrument[]>("/instruments"),
+  getCandles: (s) => request<T.Candle[]>(`/instruments/${encodeURIComponent(s)}/candles`),
   runScanner: () => post<T.ScanSummary>("/scanner/run"),
   getScanSummary: () => request<T.ScanSummary>("/scanner/summary"),
   getOpportunities: () => request<T.TradingSignal[]>("/scanner/opportunities"),

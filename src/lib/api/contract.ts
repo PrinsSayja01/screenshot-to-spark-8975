@@ -5,6 +5,7 @@ export interface TradingApi {
   getHealth(): Promise<T.Health>;
   getMarkets(): Promise<T.MarketStatus[]>;
   getInstruments(): Promise<T.Instrument[]>;
+  getCandles(symbol: string): Promise<T.Candle[]>;
   runScanner(): Promise<T.ScanSummary>;
   getScanSummary(): Promise<T.ScanSummary>;
   getOpportunities(): Promise<T.TradingSignal[]>;
