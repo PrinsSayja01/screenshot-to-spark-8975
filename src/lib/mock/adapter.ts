@@ -50,7 +50,7 @@ const sig = (
 });
 
 const signals = (): T.TradingSignal[] => {
-  const I = Object.fromEntries(instruments().map((x) => [x.symbol, x]));
+  const I = Object.fromEntries(instruments().map((x) => [x.symbol, x])) as Record<"AAPL" | "NVDA" | "SAP" | "KO", T.Instrument>;
   return [
     sig("demo-sig-1", I.AAPL, "LONG", "VWAP_PULLBACK", 72, 100.0, 99.5, 101.0, "APPROVED"),
     sig("demo-sig-2", I.NVDA, "LONG", "MOMENTUM", 68, 100.2, 99.6, 101.4, "WARNING"),
@@ -60,7 +60,7 @@ const signals = (): T.TradingSignal[] => {
 };
 
 const proposals = (): T.TradeProposal[] => {
-  const s = signals();
+  const s = signals() as [T.TradingSignal, T.TradingSignal, T.TradingSignal, T.TradingSignal];
   const mk = (sg: T.TradingSignal, n: number, mins: number, status: T.RiskStatus, checks: T.RiskCheck[]): T.TradeProposal => ({
     id: `demo-prop-${n}`, version: 1, signal: sg, quantity: 1,
     est_commission: 1.0, est_slippage: 0.05, max_loss: +(Math.abs(sg.entry - sg.stop_loss) + 1.05).toFixed(2),

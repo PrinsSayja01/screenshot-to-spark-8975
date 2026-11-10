@@ -26,7 +26,7 @@ function Overview() {
   const p = portfolio.data;
   return (
     <>
-      <PageHeader title="Overview" subtitle="Paper trading account · EUR" demo={p?.is_demo} />
+      <PageHeader title="Overview" subtitle="Paper trading account · EUR" demo={p?.is_demo ?? false} />
       <QueryView query={portfolio}>
         {(p) => (
           <div className="grid grid-cols-2 gap-2 md:grid-cols-4 xl:grid-cols-8">
