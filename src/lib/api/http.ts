@@ -2,7 +2,7 @@ import type * as T from "./types";
 import type { TradingApi } from "./contract";
 
 export const API_BASE_URL =
-  (import.meta.env.VITE_API_BASE_URL as string | undefined) ?? "http://localhost:8000/api/v1";
+  (import.meta.env["VITE_API_BASE_URL"] as string | undefined) ?? "http://localhost:8000/api/v1";
 const TIMEOUT_MS = 8000;
 
 export class ApiError extends Error {
@@ -46,7 +46,7 @@ async function request<R>(path: string, init?: RequestInit): Promise<R> {
 }
 
 const post = <R>(path: string, body?: unknown) =>
-  request<R>(path, { method: "POST", body: body ? JSON.stringify(body) : undefined });
+  request<R>(path, body ? { method: "POST", body: JSON.stringify(body) } : { method: "POST" });
 
 export const httpApi: TradingApi = {
   getHealth: () => request<T.Health>("/health"),

@@ -1,5 +1,5 @@
 export const WS_URL =
-  (import.meta.env.VITE_WS_URL as string | undefined) ?? "ws://localhost:8000/ws/trading";
+  (import.meta.env["VITE_WS_URL"] as string | undefined) ?? "ws://localhost:8000/ws/trading";
 
 export type WsState = "connecting" | "open" | "closed";
 export type WsMessage = { type: string; payload: unknown };

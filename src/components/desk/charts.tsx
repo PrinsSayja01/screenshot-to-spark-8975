@@ -30,7 +30,7 @@ export function EquityChart({ data, height = 200 }: { data: { date: string; equi
   );
 }
 
-export function PnlBars({ data, height = 200, x = "date" }: { data: { pnl: number; [k: string]: unknown }[]; height?: number; x?: string }) {
+export function PnlBars({ data, height = 200, x = "date" }: { data: { pnl: number }[]; height?: number; x?: string }) {
   return (
     <ResponsiveContainer width="100%" height={height}>
       <BarChart data={data} margin={{ left: 0, right: 8, top: 8, bottom: 0 }}>
